@@ -612,3 +612,5 @@ Una vez que esté corriendo el servidor ingresamos a https://demo.com:8443/ en e
 [http://www.cafesoft.com/products/cams/ps/docs32/admin/ConfiguringApache2ForSSLTLSMutualAuthentication.html#Creating_a_Certificate_Authority_using_OpenSSL](http://www.cafesoft.com/products/cams/ps/docs32/admin/ConfiguringApache2ForSSLTLSMutualAuthentication.html#Creating_a_Certificate_Authority_using_OpenSSL)
 [https://dzone.com/articles/apache-http-24-how-to-build-a-docker-image-for-ssl](https://dzone.com/articles/apache-http-24-how-to-build-a-docker-image-for-ssl)  
 [https://medium.com/@niral22/2-way-ssl-with-spring-boot-microservices-2c97c974e83](https://medium.com/@niral22/2-way-ssl-with-spring-boot-microservices-2c97c974e83)  
+[https://stackoverflow.com/questions/52346639/spring-boot-and-apache2-on-the-same-server-and-port](https://stackoverflow.com/questions/52346639/spring-boot-and-apache2-on-the-same-server-and-port)
+[https://www.baeldung.com/x-509-authentication-in-spring-security](https://www.baeldung.com/x-509-authentication-in-spring-security)

@@ -673,3 +673,5 @@ https://github.com/Paritosh-Anand/Docker-Httpd-Tomcat
 https://docs.jelastic.com/tomcat-behind-apache/
 https://medium.com/@iamvickyav/deploying-spring-boot-war-in-tomcat-based-docker-2b689b206496
 https://careydevelopment.us/2017/06/19/run-spring-boot-apache-web-server-front-end/
+https://www.howtobuildsoftware.com/index.php/how-do/bD28/java-tomcat-ssl-mutual-authentication-mutual-authentication-with-tomcat-7
+https://www.naschenweng.info/2018/02/01/java-mutual-ssl-authentication-2-way-ssl-authentication/

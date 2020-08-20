@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Start PHP FPM
+service php7.3-fpm restart
+
+service apache2 restart
+
+
+# Start Gunicorn
+gunicorn httpbin:app -k gevent --access-logfile /var/log/gunicorn-access.log --error-logfile /var/log/gunicorn-error.log --daemon
+
+# Java
+java -jar /app.jar
+
+# Hand off to the CMD
+exec "$@"

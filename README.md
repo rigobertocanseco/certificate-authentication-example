@@ -1,14 +1,62 @@
-# Configuración de Apache 2.0 para la autenticación mutua SSL / TLS mediante una autoridad de certificación OpenSSL
+# Configuración de Apache 2.0 para la autenticación mutua SSL / TLS
+
+## Introduccón
+
+La [autenticación mutua](https://en.wikipedia.org/wiki/Mutual_authentication) o autenticación bidireccional se refiere a dos partes que se autentican entre sí al mismo tiempo, siendo un modo de autenticación predeterminado en algunos protocolos (IKE, SSH) y opcional en otros ([TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security)).  
+
+Por defecto, el protocolo TLS solo prueba la identidad del servidor al cliente mediante el certificado [X.509](https://en.wikipedia.org/wiki/X.509#Certificates) y la autenticación del cliente en el servidor se deja a la capa de aplicación.
+
+TLS también ofrece autenticación de cliente a servidor mediante la autenticación X.509 del lado del cliente. Como requiere el aprovisionamiento de certificados a los clientes e implica una experiencia menos fácil de usar, rara vez se usa en aplicaciones de usuario final.
+
+La autenticación Mutua (TLS) es mucho más utilizada en aplicaciones B2B, donde un número limitado de clientes programáticos y homogéneos se conectan a servicios web específicos, la carga operativa es limitada y los requisitos de seguridad suelen ser mucho más altos en comparación con los entornos de consumo.
+
+Desde un punto de vista de alto nivel, el proceso de autenticación y creación de un canal cifrado mediante la autenticación mutua basada en certificados (o autenticación mutua) implica los siguientes pasos:
+
+1. Un cliente solicita acceso a un recurso protegido;
+2. El servidor presenta su certificado al cliente;
+3. El cliente verifica el certificado del servidor;
+4. Si tiene éxito, el cliente envía su certificado al servidor;
+5. El servidor verifica las credenciales del cliente;
+6. Si tiene éxito, el servidor otorga acceso al recurso protegido solicitado por el cliente.
+
+![**Figura 1: Qué sucede durante el proceso de autenticación mutua**](https://raw.githubusercontent.com/amusarra/docker-apache-ssl-tls-mutual-authentication/master/images/security-sslBMAWithCertificates.gif)
 
 ### Servidor Apache
 
+#### Equipo 
+**Hardware:**  
+
+- Sistema Operativo: Debian 10, x86-64 
+- Núcleo de Linux: 4.19.0-10-amd64
+- Memoria RAM: 6GB
+- IntellijIdea
+- JVM 
+
+**Software**  
+
+- Apache HTTP 2.4 (2.4.41-1ubuntu1)
+- PHP 7.3 (7.3.11-0ubuntu0.19.10.2)
+- PHP 7.3 FPM (FastCGI Process Manager)
+- Docker 
+	- Client: Docker Engine - Community  
+ Version:           19.03.12
+	- Server: Docker Engine - Community  
+ Engine:
+  Version:          19.03.12
+	- Container: [https://hub.docker.com/r/amusarra/apache-ssl-tls-mutual-authentication](https://hub.docker.com/r/amusarra/apache-ssl-tls-mutual-authentication)  
+
+
 #### Configuración de Dockerfile
+
+Una vez que tengamos los cubiertos los requisitos mínimos para desarrollar la aplicación vamos a tener que instalar [Docker](https://docs.docker.com/), que nos va a servir como un contenedor para nuestra aplicación donde vamos a tener instalado nuestro servidor con todo lo necesario como es: sistema operativo, apache.
+
+Descargamos el siguiente [contenedor](https://hub.docker.com/r/amusarra/apache-ssl-tls-mutual-authentication)
 
 Para crear una imagen necesitamos construir el [Dockerfile](https://docs.docker.com/engine/reference/builder/), gracias a una serie de directivas nos permite crear una imagen según sea necesario.
 Intentamos comprender cuáles son las secciones más importantes del Dockerfile. La primera línea del archivo (como se anticipó anteriormente) hace que el contenedor comience desde la imagen ubuntu: 18.04.  
 
 ````shell script
-FROM ubuntu:18.04
+FROM ubuntu:19.10
 ````
 A continuación se muestra la sección sobre variables de entorno que son puramente específicas de Apache HTTP.  
 Los valores de estas variables de entorno se pueden cambiar para adaptarse a sus necesidades.
@@ -609,8 +657,19 @@ Una vez que esté corriendo el servidor ingresamos a https://demo.com:8443/ en e
 
 
 ### Links 
+[https://en.wikipedia.org/wiki/Mutual_authentication](https://en.wikipedia.org/wiki/Mutual_authentication)  
+[https://httpd.apache.org/docs/2.4/](https://httpd.apache.org/docs/2.4/)  
+[https://docs.oracle.com/cd/E19798-01/821-1841/gijrp/index.html](https://docs.oracle.com/cd/E19798-01/821-1841/gijrp/index.html])
+[https://spring.io/guides/gs/spring-boot-docker/](https://spring.io/guides/gs/spring-boot-docker/)
+[https://stormpath.com/blog/secure-spring-boot-webapp-apache-letsencrypt-ssl](https://stormpath.com/blog/secure-spring-boot-webapp-apache-letsencrypt-ssl)
+[https://github.com/amusarra/docker-apache-ssl-tls-mutual-authentication](https://github.com/amusarra/docker-apache-ssl-tls-mutual-authentication)  
+[https://github.com/codependent/spring-boot-ssl-mutual-authentication](https://github.com/codependent/spring-boot-ssl-mutual-authentication)
 [http://www.cafesoft.com/products/cams/ps/docs32/admin/ConfiguringApache2ForSSLTLSMutualAuthentication.html#Creating_a_Certificate_Authority_using_OpenSSL](http://www.cafesoft.com/products/cams/ps/docs32/admin/ConfiguringApache2ForSSLTLSMutualAuthentication.html#Creating_a_Certificate_Authority_using_OpenSSL)
 [https://dzone.com/articles/apache-http-24-how-to-build-a-docker-image-for-ssl](https://dzone.com/articles/apache-http-24-how-to-build-a-docker-image-for-ssl)  
 [https://medium.com/@niral22/2-way-ssl-with-spring-boot-microservices-2c97c974e83](https://medium.com/@niral22/2-way-ssl-with-spring-boot-microservices-2c97c974e83)  
 [https://stackoverflow.com/questions/52346639/spring-boot-and-apache2-on-the-same-server-and-port](https://stackoverflow.com/questions/52346639/spring-boot-and-apache2-on-the-same-server-and-port)
 [https://www.baeldung.com/x-509-authentication-in-spring-security](https://www.baeldung.com/x-509-authentication-in-spring-security)
+https://github.com/Paritosh-Anand/Docker-Httpd-Tomcat
+https://docs.jelastic.com/tomcat-behind-apache/
+https://medium.com/@iamvickyav/deploying-spring-boot-war-in-tomcat-based-docker-2b689b206496
+https://careydevelopment.us/2017/06/19/run-spring-boot-apache-web-server-front-end/

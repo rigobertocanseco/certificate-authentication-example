@@ -1,2 +1,8 @@
 # Project exclude paths
 /.gradle/
+Sera borrado README.md.save
+Sera borrado build/
+Sera borrado configs/certs/remove/
+Sera borrado src/test/resources/
+Sera borrado target/
+logs/*

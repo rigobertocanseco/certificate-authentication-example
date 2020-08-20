@@ -648,12 +648,49 @@ Certificate was added to keystore
 ````
 
 ### Aplicación web
+El código fuente del proyecto se encuentra en el siguiente repositorio de [Github](https://github.com/rigobertocanseco/certificate-authentication-example)
+
 
 ### Pruebas
 
-Una vez que esté corriendo el servidor ingresamos a https://demo.com:8443/ en el navegador
+**Instalación de certificados**
+
+Antes de terminar esta sección y mirar el sitio, necesitamos instalar nuestra autoridad de certificación raíz generada como un certificado confiable en un navegador.
+
+Una instalación ejemplar de nuestra autoridad de certificación para Chrome se vería así:
+
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img2.PNG)
+
+Ingresamos a Settings / Manager Certificates / Add Certificate of CA
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img3.PNG)
+
+Clic en importar y seleccionamos el archivo rootCA.crt y dmaos clic OK 
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img4.PNG)
+
+Elija "Confiar en esta CA para identificar sitios web" y haga clic en Aceptar
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img5.PNG)
 
 
+Como nuestro CA es un certificado autofirmado no nos mostrará como un certificado valido.   
+Una vez que esté corriendo el servidor ingresamos a https://demo.com:8443/ en el navegador nos aparecerá la siguiente página
+
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img1.PNG)
+
+Ahora vamos a crear el certificado del lado del cliente. Los pasos que debemos seguir son prácticamente los mismos que para el certificado del lado del servidor que ya creamos.
+ 
+Instalamos el Certificado del cliente en este ejemplo sería clientBob.p12
+
+**Autenticación**
+
+Ahora el navegador ya tiene cargado el certificado del usuario
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img6.PNG)
+
+Podemos ver la información del certificado
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img7.PNG)
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img8.PNG)
+
+Ahora ingresamos al sitio y nos dejará ingresar
+![](https://raw.githubusercontent.com/rigobertocanseco/certificate-authentication-example/master/docs/images/img9.PNG)
 
 
 ### Links 

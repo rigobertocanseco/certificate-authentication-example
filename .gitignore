@@ -6,3 +6,4 @@ Sera borrado configs/certs/remove/
 Sera borrado src/test/resources/
 Sera borrado target/
 logs/*
+/.idea/

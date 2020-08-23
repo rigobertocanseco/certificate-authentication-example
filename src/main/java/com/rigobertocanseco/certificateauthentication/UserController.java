@@ -12,7 +12,8 @@ import java.security.Principal;
 
 @RestController
 public class UserController {
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+
+    //@PreAuthorize("hasAuthority('ROLE_USER')")
     @RequestMapping(value = "/user")
     public String user(Model model, Principal principal) {
         UserDetails currentUser = (UserDetails) ((Authentication) principal).getPrincipal();
@@ -20,6 +21,7 @@ public class UserController {
         System.out.println("Principal:" + principal);
         System.out.println("Username:" + currentUser.getUsername());
         model.addAttribute("username", currentUser.getUsername());
+
         return "<!DOCTYPE html>\n" +
                 "<html xmlns:th=\"http://www.thymeleaf.org\">\n" +
                 "<head>\n" +

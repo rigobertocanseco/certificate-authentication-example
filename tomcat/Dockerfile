@@ -6,4 +6,4 @@ COPY server.xml /usr/local/tomcat/conf/
 COPY certificate-authentication-example-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/certificate-authentication-example.war
 COPY sample.war /usr/local/tomcat/webapps/sample.war
 
-EXPOSE 8009
+EXPOSE 9090
